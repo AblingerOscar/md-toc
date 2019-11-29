@@ -1,0 +1,227 @@
+[
+  {
+    "markdown": "# foo\n## foo\n### foo\n#### foo\n##### foo\n###### foo\n",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "####### foo\n",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "#5 bolt\n\n#hashtag\n",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "\\## foo\n",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "# foo *bar* \\*baz\\*\n",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "#                  foo                     \n",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": " ### foo\n  ## foo\n   # foo\n",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "    # foo\n",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "foo\n    # bar\n",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "## foo ##\n  ###   bar    ###\n",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "# foo ##################################\n##### foo ##\n",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "### foo ###     \n",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "### foo ### b\n",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "# foo#\n",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "### foo \\###\n## foo #\\##\n# foo \\#\n",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "****\n## foo\n****\n",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "Foo bar\n# baz\nBar foo\n",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "## \n#\n### ###\n",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "Foo *bar*\n=========\n\nFoo *bar*\n---------\n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "Foo *bar\nbaz*\n====\n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "  Foo *bar\nbaz*\t\n====\n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "Foo\n-------------------------\n\nFoo\n=\n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "   Foo\n---\n\n  Foo\n-----\n\n  Foo\n  ===\n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "    Foo\n    ---\n\n    Foo\n---\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "Foo\n   ----      \n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "Foo\n    ---\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "Foo\n= =\n\nFoo\n--- -\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "Foo  \n-----\n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "Foo\\\n----\n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "`Foo\n----\n`\n\n<a title=\"a lot\n---\nof dashes\"/>\n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "> Foo\n---\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "> foo\nbar\n===\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "- Foo\n---\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "Foo\nBar\n---\n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "---\nFoo\n---\nBar\n---\nBaz\n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "\n====\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "---\n---\n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "- foo\n-----\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "    foo\n---\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "> foo\n-----\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "\\> foo\n------\n",
+    "section": "Setext headings",
+    "valid": true
+  },
+  {
+    "markdown": "Foo\n\nbar\n---\nbaz\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "Foo\nbar\n\n---\n\nbaz\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "Foo\nbar\n* * *\nbaz\n",
+    "section": "Setext headings",
+    "valid": false
+  },
+  {
+    "markdown": "Foo\nbar\n\\---\nbaz\n",
+    "section": "Setext headings",
+    "valid": false
+  }
+]
