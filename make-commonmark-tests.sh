@@ -10,4 +10,4 @@ fi
 
 
 curl "https://spec.commonmark.org/$SPEC_VERSION/spec.json" |
-  jq '[.[] | select(.section == "ATX headings" or .section == "Setext headings") | {markdown, section, valid: .html | startswith("<h")}]' > tests/commonmark-$SPEC_VERSION.json
+  jq '[.[] | select(.section == "ATX headings" or .section == "Setext headings") | {markdown, section, valid: .html | contains("<h")}]' > tests/commonmark-$SPEC_VERSION.json

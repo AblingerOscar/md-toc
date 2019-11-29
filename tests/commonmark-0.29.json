@@ -82,7 +82,7 @@
   {
     "markdown": "Foo bar\n# baz\nBar foo\n",
     "section": "ATX headings",
-    "valid": false
+    "valid": true
   },
   {
     "markdown": "## \n#\n### ###\n",
@@ -117,7 +117,7 @@
   {
     "markdown": "    Foo\n    ---\n\n    Foo\n---\n",
     "section": "Setext headings",
-    "valid": false
+    "valid": true
   },
   {
     "markdown": "Foo\n   ----      \n",
@@ -132,7 +132,7 @@
   {
     "markdown": "Foo\n= =\n\nFoo\n--- -\n",
     "section": "Setext headings",
-    "valid": false
+    "valid": true
   },
   {
     "markdown": "Foo  \n-----\n",
@@ -152,7 +152,7 @@
   {
     "markdown": "> Foo\n---\n",
     "section": "Setext headings",
-    "valid": false
+    "valid": true
   },
   {
     "markdown": "> foo\nbar\n===\n",
@@ -162,7 +162,7 @@
   {
     "markdown": "- Foo\n---\n",
     "section": "Setext headings",
-    "valid": false
+    "valid": true
   },
   {
     "markdown": "Foo\nBar\n---\n",
@@ -187,17 +187,17 @@
   {
     "markdown": "- foo\n-----\n",
     "section": "Setext headings",
-    "valid": false
+    "valid": true
   },
   {
     "markdown": "    foo\n---\n",
     "section": "Setext headings",
-    "valid": false
+    "valid": true
   },
   {
     "markdown": "> foo\n-----\n",
     "section": "Setext headings",
-    "valid": false
+    "valid": true
   },
   {
     "markdown": "\\> foo\n------\n",
@@ -207,17 +207,17 @@
   {
     "markdown": "Foo\n\nbar\n---\nbaz\n",
     "section": "Setext headings",
-    "valid": false
+    "valid": true
   },
   {
     "markdown": "Foo\nbar\n\n---\n\nbaz\n",
     "section": "Setext headings",
-    "valid": false
+    "valid": true
   },
   {
     "markdown": "Foo\nbar\n* * *\nbaz\n",
     "section": "Setext headings",
-    "valid": false
+    "valid": true
   },
   {
     "markdown": "Foo\nbar\n\\---\nbaz\n",
