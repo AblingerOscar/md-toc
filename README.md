@@ -20,3 +20,19 @@ Instead of offering one monolithic generator, this library uses two steps:
 ## How to use this library
 
 > TODO
+
+## Tests
+
+### Commonmark
+
+The script `make-commonmark-tests.sh` can automatically generate a test file
+for a given version by simply calling
+
+```sh
+sh make-commonmark-tests.sh <VERSION>
+```
+
+It will then generate a file called `commonmark-<VERSION>.json` in the test
+directory.
+
+> TODO: Execute Tests
