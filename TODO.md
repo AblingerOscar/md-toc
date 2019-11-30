@@ -1,7 +1,7 @@
 # CommonMark
 
-- [ ] Respect code intentation
+- [x] Respect code intentation
 - [ ] Respect multiline-code
 - [ ] work inside quotes
-- [ ] ATX headings
+- [x] ATX headings
 - [ ] Setext heading
