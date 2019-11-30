@@ -26,23 +26,23 @@ function test_generator {
     if [ "$generator_output" = "[]" ]; then
       # no header recognized
       if ${validities[$index]}; then
-        nr_of_failed_tests=$(($nr_of_failed_tests + 1))
+        nr_of_failed_tests=$((nr_of_failed_tests + 1))
         echo Test $index failed: Did not recognize any headings
 
         if $verbose; then
           echo content: \<"${markdown[$index]}"\>
         fi
       else
-        nr_of_passed_tests=$(($nr_of_passed_tests + 1))
+        nr_of_passed_tests=$((nr_of_passed_tests + 1))
       fi
     else
       # header recognized
 
       # TODO: check whether the headings are actually correct, not just that there are some
       if ${validities[$index]}; then
-        nr_of_passed_tests=$(($nr_of_passed_tests + 1))
+        nr_of_passed_tests=$((nr_of_passed_tests + 1))
       else
-        nr_of_failed_tests=$(($nr_of_failed_tests + 1))
+        nr_of_failed_tests=$((nr_of_failed_tests + 1))
         echo Test $index failed: Falsely recognized the following headings: "$generator_output"
       fi
     fi
