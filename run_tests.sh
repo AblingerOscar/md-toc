@@ -55,7 +55,7 @@ function test_generator {
 }
 
 # test gen-commonmark.sh
-test_generator "gen-commonmark.sh" "tests/commonmark-0.29.json"
+test_generator "analysers/commonmark.sh" "tests/commonmark-0.29.json"
 
 
 IFS=$original_IFS
