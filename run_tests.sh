@@ -11,6 +11,8 @@ function test_generator {
   local generator="$1"
   local test_file="$2"
 
+  echo ">>>> Testing $generator using tests from $test_file"
+
   IFS="$mydelimiter"
   local markdown=($(jq -j '.[].markdown | "\(.)'"$mydelimiter"'"' "$test_file"))
 # local validities=($(jq -j 'if .[].valid == true then 0 else 1 end | "\(.)'"$mydelimiter"'"' "$test_file"))
@@ -44,6 +46,9 @@ function test_generator {
       else
         nr_of_failed_tests=$((nr_of_failed_tests + 1))
         echo Test $index failed: Falsely recognized the following headings: "$generator_output"
+        if $verbose; then
+          echo content: \<"${markdown[$index]}"\>
+        fi
       fi
     fi
   done
