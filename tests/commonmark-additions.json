@@ -1,0 +1,112 @@
+[
+  {
+    "markdown": "```\n# hello",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "```\n# hello\n  ```   ",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "   ```  \n# hello\n  ```   ",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "   ``  \n# hello\n  ```   ",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "````\n```\n# hello\n````",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "````\n````\n# hello\n````",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "```\n```foo\n# hello\n```",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "```foo\n# hello\n```",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "    ```\n# hello\n  ```   ",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "    # hello",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "~~~\n# hello",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "~~~\n# hello\n  ~~~   ",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "   ~~~  \n# hello\n  ~~~   ",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "   ~~  \n# hello\n  ~~~   ",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "~~~~\n~~~\n# hello\n~~~~",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "~~~~\n~~~~\n# hello\n~~~~",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "~~~\n~~~foo\n# hello\n~~~",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "~~~foo\n# hello\n~~~",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "    ~~~\n# hello\n  ~~~   ",
+    "section": "ATX headings",
+    "valid": true
+  },
+  {
+    "markdown": "```\n~~~\n# hello\n```",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "```\n~~~\n~~~\n# hello\n```",
+    "section": "ATX headings",
+    "valid": false
+  },
+  {
+    "markdown": "```\n    ```\n# hello\n```",
+    "section": "ATX headings",
+    "valid": false
+  }
+]
