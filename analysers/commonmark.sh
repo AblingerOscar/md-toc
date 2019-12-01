@@ -4,6 +4,9 @@ output='['
 current_heading_level=
 current_heading_name=
 
+currently_in_code_fence=false
+starting_code_fence=""
+
 function begins_with {
   local line=$1
   local line_beginning=$2
@@ -32,6 +35,41 @@ function trim_characters {
 function trim {
   local string=$1
   echo -n "$(trim_characters "$string" "[:space:]")"
+}
+
+function check_for_code_fence_start {
+    line=$1
+    nr_of_consecutive_backticks=0
+    nr_of_consecutive_tildes=0
+
+    for (( i=0; i < ${#line}; i++  )); do
+      if [ "${line:$i:1}" = '`' ]; then
+        nr_of_consecutive_backticks=$((nr_of_consecutive_backticks+1))
+      else
+        if [[ $nr_of_consecutive_backticks -gt 2 ]]; then
+          continue
+        fi
+        nr_of_consecutive_backticks=0
+      fi
+
+      if [ "${line:$i:1}" = '~' ]; then
+        nr_of_consecutive_tildes=$((nr_of_consecutive_tildes+1))
+      else
+        if [[ $nr_of_consecutive_tildes -gt 2 ]]; then
+          continue
+        fi
+        nr_of_consecutive_tildes=0
+      fi
+    done
+
+    if [[ $nr_of_consecutive_backticks -gt 2 ]]; then
+      currently_in_code_fence=true
+      starting_code_fence=$(eval $(echo "printf '\`%0.s' {1..$nr_of_consecutive_backticks}"))
+    fi
+    if [[ $nr_of_consecutive_tildes -gt 2 ]]; then
+      currently_in_code_fence=true
+      starting_code_fence=$(eval $(echo "printf '~%0.s' {1..$nr_of_consecutive_tildes}"))
+    fi
 }
 
 # checks the amount of # at the start of the string
@@ -98,6 +136,19 @@ while IFS= read -r line; do
 
   trimmed_line="$(trim "$line")"
 
+  # Note: code fences do not start if they are indented like code,
+  #       hence this is checked after the indentation
+  if $currently_in_code_fence; then
+    # check whether it ends on this line
+    if [ "$trimmed_line" = "$starting_code_fence" ]; then
+      currently_in_code_fence=false
+    fi
+    continue
+  else
+    # check whether a code fence starts here
+    check_for_code_fence_start "$trimmed_line"
+  fi
+  
   # atx headings
   if check_atx_heading "$trimmed_line" == true; then
     generate_autput_for_current_heading
