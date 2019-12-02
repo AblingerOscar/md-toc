@@ -118,7 +118,7 @@ function check_atx_heading {
   current_heading_name="$h_name"
 }
 
-function generate_autput_for_current_heading {
+function generate_output_for_current_heading {
   local heading_object="{\"level\":$current_heading_level,\"name\":\"$current_heading_name\"}"
 
   if [ "$output" == "[" ]; then
@@ -150,8 +150,8 @@ while IFS= read -r line; do
   fi
   
   # atx headings
-  if check_atx_heading "$trimmed_line" == true; then
-    generate_autput_for_current_heading
+  if check_atx_heading "$trimmed_line" = true; then
+    generate_output_for_current_heading
   fi
 done < "${1:-/dev/stdin}"
 
