@@ -125,7 +125,10 @@ function escape {
 }
 
 function generate_output_for_current_heading {
-  local heading_object="{\"level\":$(escape "$current_heading_level"),\"name\":\"$(escape "$current_heading_name")\"}"
+  local level="$current_heading_level"
+  local name="$(escape "$(trim "$current_heading_name")")"
+
+  local heading_object="{\"level\":$level,\"name\":\"$name\"}"
 
   if [ "$output" == "[" ]; then
     output="$output$heading_object" 
