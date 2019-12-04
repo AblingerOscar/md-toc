@@ -118,8 +118,14 @@ function check_atx_heading {
   current_heading_name="$h_name"
 }
 
+function escape {
+  local line=$1
+  
+  echo -e "$line" | sed 's/"/\\"/g'
+}
+
 function generate_output_for_current_heading {
-  local heading_object="{\"level\":$current_heading_level,\"name\":\"$current_heading_name\"}"
+  local heading_object="{\"level\":$(escape "$current_heading_level"),\"name\":\"$(escape "$current_heading_name")\"}"
 
   if [ "$output" == "[" ]; then
     output="$output$heading_object" 
