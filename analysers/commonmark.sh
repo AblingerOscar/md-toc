@@ -128,15 +128,15 @@ function check_atx_heading {
 function check_setex_heading {
   line="$1"
 
-  if [ "$current_heading_name" != "" ] && [ "$line" != "" ]; then
+  if [ -n "$current_heading_name" ] && [ -n "$line" ]; then
     lvl1_pure_line="$(trim_characters "$line" "=")"
-    if [ "$lvl1_pure_line" = "" ]; then
+    if [ -z "$lvl1_pure_line" ]; then
       current_heading_level=1
       return 0
     fi
     
     lvl2_pure_line="$(trim_characters "$line" "-")"
-    if [ "$lvl2_pure_line" = "" ]; then
+    if [ -z "$lvl2_pure_line" ]; then
       current_heading_level=1
       return 0
     fi
@@ -145,7 +145,7 @@ function check_setex_heading {
 }
 
 function check_setex_heading_reset {
-  if [ "$current_heading_name" = "" ]; then
+  if [ -z "$current_heading_name" ]; then
     current_heading_name="$trimmed_line"
   else
     current_heading_name="$current_heading_name $trimmed_line"
@@ -155,7 +155,7 @@ function check_setex_heading_reset {
   #     - block quote (see TODO about block quotes in general
   #     - html block (TODO)
   #     - a blank line
-  if [ "$trimmed_line" = "" ]; then
+  if [ -z "$trimmed_line" ]; then
     current_heading_name=""
   fi
 
