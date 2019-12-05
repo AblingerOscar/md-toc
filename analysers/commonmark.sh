@@ -65,10 +65,16 @@ function check_for_code_fence_start {
     if [[ $nr_of_consecutive_backticks -gt 2 ]]; then
       currently_in_code_fence=true
       starting_code_fence=$(eval $(echo "printf '\`%0.s' {1..$nr_of_consecutive_backticks}"))
+
+      # @setex-headings: interrupt paragraph: code fence
+      current_heading_name=""
     fi
     if [[ $nr_of_consecutive_tildes -gt 2 ]]; then
       currently_in_code_fence=true
       starting_code_fence=$(eval $(echo "printf '~%0.s' {1..$nr_of_consecutive_tildes}"))
+
+      # @setex-headings: interrupt paragraph: code fence
+      current_heading_name=""
     fi
 }
 
@@ -118,6 +124,60 @@ function check_atx_heading {
   current_heading_name="$h_name"
 }
 
+# recognize list of = or -
+function check_setex_heading {
+  line="$1"
+
+  if [ "$current_heading_name" != "" ] && [ "$line" != "" ]; then
+    lvl1_pure_line="$(trim_characters "$line" "=")"
+    if [ "$lvl1_pure_line" = "" ]; then
+      current_heading_level=1
+      return 0
+    fi
+    
+    lvl2_pure_line="$(trim_characters "$line" "-")"
+    if [ "$lvl2_pure_line" = "" ]; then
+      current_heading_level=1
+      return 0
+    fi
+  fi
+  return 1
+}
+
+function check_setex_heading_reset {
+  if [ "$current_heading_name" = "" ]; then
+    current_heading_name="$trimmed_line"
+  else
+    current_heading_name="$current_heading_name $trimmed_line"
+  fi
+
+  # a paragraph gets interrupted by:
+  #     - block quote (see TODO about block quotes in general
+  #     - html block (TODO)
+  #     - a blank line
+  if [ "$trimmed_line" = "" ]; then
+    current_heading_name=""
+  fi
+
+  #     - thematic break
+  if [[ "$trimmed_line" =~ ^___+ ]]; then
+    current_heading_name=""
+  elif [[ "$trimmed_line" =~ ^---+ ]]; then
+    current_heading_name=""
+  elif [[ "$trimmed_line" =~ ^\*\*\*+ ]]; then
+    current_heading_name=""
+
+  #     - list item
+  elif [[ "$trimmed_line" =~ ^[-+*]' ' ]]; then
+    current_heading_name=""
+  elif [[ "$trimmed_line" =~ ^[0-9]{1,9}')' ]]; then
+    current_heading_name=""
+  elif [[ "$trimmed_line" =~ ^[0-9]{1,9}'.' ]]; then
+    current_heading_name=""
+  fi
+}
+
+
 function escape {
   local line=$1
   
@@ -135,11 +195,17 @@ function generate_output_for_current_heading {
   else
     output="$output,$heading_object"
   fi
+ 
+  # @setex-headings: interrupt paragraph: atx header 
+  current_heading_name=""
 }
 
 while IFS= read -r line; do
   # check for indented code
   if code_indentation "$line"; then
+    # @setex-headings: interrupt paragraph: code indentation
+    current_heading_name=""
+
     continue
   fi
 
@@ -162,6 +228,14 @@ while IFS= read -r line; do
   if check_atx_heading "$trimmed_line" = true; then
     generate_output_for_current_heading
   fi
+
+  # setex headings
+  if check_setex_heading "$trimmed_line" = true; then
+    generate_output_for_current_heading
+    continue
+  fi
+
+  check_setex_heading_reset  
 done < "${1:-/dev/stdin}"
 
 # End the output
